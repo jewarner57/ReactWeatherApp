@@ -67,17 +67,17 @@ class WeatherForm extends Component {
             <div onClick={this.submit} className="submitWeather">Submit</div>
           </div>
 
-          <div>
+          <div className="radio">
             <input type="radio" id="imperial" name="unit" value="imperial" onChange={this.handleRadioChange} checked={this.state.radioValue === 'imperial'} />
             <label for="imperial">Imperial</label>
           </div>
 
-          <div>
+          <div className="radio">
             <input type="radio" id="metric" name="unit" value="metric" onChange={this.handleRadioChange} checked={this.state.radioValue === 'metric'} />
             <label for="metric">Metric</label>
           </div>
 
-          <div>
+          <div className="radio">
             <input type="radio" id="standard" name="unit" value="standard" onChange={this.handleRadioChange} checked={this.state.radioValue === 'standard'} />
             <label for="standard">Standard</label>
           </div>

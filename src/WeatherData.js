@@ -1,11 +1,12 @@
 import React from 'react';
+import './WeatherData.css'
 
 function WeatherData(props) {
   const { temp, pressure, humidity, temp_min, temp_max } = props.weather.main
   const { main, description, icon } = props.weather.weather[0]
 
   return (
-    <div>
+    <div className="WeatherData">
       <div>Title: {main}</div>
       <div>Desc: {description}</div>
       <div>Icon: {icon}</div>
