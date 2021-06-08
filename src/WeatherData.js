@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Weather(props) {
+function WeatherData(props) {
   const { temp, pressure, humidity, temp_min, temp_max } = props.weather.main
   const { main, description, icon } = props.weather.weather[0]
 
@@ -17,4 +17,4 @@ function Weather(props) {
   );
 }
 
-export default Weather
+export default WeatherData
