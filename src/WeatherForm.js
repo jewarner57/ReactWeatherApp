@@ -14,6 +14,7 @@ class WeatherForm extends Component {
     }
 
     this.handleRadioChange = this.handleRadioChange.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   handleRadioChange(event) {
@@ -22,8 +23,7 @@ class WeatherForm extends Component {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
+  submit() {
     // ! Get your own API key ! 
     const apikey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
     // Get the zip from the input
@@ -54,15 +54,18 @@ class WeatherForm extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="WeatherForm">
         <form onSubmit={e => this.handleSubmit(e)}>
-          <input
-            value={this.state.inputValue}
-            onChange={e => this.setState({ inputValue: e.target.value })}
-            type="text"
-            pattern="(\d{5}([\-]\d{4})?)"
-            placeholder="enter zip"
-          />
+          <div className='zipFieldContainer'>
+            <input
+              value={this.state.inputValue}
+              onChange={e => this.setState({ inputValue: e.target.value })}
+              type="text"
+              pattern="(\d{5}([\-]\d{4})?)"
+              placeholder="Enter Zipcode"
+            />
+            <div onClick={this.submit} className="submitWeather">Submit</div>
+          </div>
 
           <div>
             <input type="radio" id="imperial" name="unit" value="imperial" onChange={this.handleRadioChange} checked={this.state.radioValue === 'imperial'} />
@@ -78,8 +81,6 @@ class WeatherForm extends Component {
             <input type="radio" id="standard" name="unit" value="standard" onChange={this.handleRadioChange} checked={this.state.radioValue === 'standard'} />
             <label for="standard">Standard</label>
           </div>
-
-          <button type="submit">Submit</button>
 
         </form>
         {this.state.weatherData ? <WeatherData weather={this.state.weatherData}></WeatherData> : ''}

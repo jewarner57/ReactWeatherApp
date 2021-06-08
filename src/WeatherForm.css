@@ -1,6 +1,26 @@
+.WeatherForm {
+
+}
+
 input[type=text] {
   border: 2px solid; 
-  padding: 0.5em 0.5em;
+  padding: 0.6em 0.6em;
   font-size: 1em;
-  border-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+
+.zipFieldContainer {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+
+.submitWeather {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background-color: rgb(29, 29, 29); 
+  padding: 10px;
+  height: auto;
+  color: rgb(236, 236, 236);
 }
