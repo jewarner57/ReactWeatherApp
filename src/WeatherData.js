@@ -10,6 +10,7 @@ function WeatherData(props) {
       <div>Title: {main}</div>
       <div>Desc: {description}</div>
       <div>Icon: {icon}</div>
+      <img alt="weather icon" src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
       <div>Temp: {temp}</div>
       <div>Pressure: {pressure}</div>
       <div>Humidity: {humidity}</div>
