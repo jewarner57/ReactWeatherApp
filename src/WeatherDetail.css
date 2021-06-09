@@ -1,0 +1,11 @@
+.WeatherDetail > div {
+  margin-top: 10px;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  color: rgb(0, 0, 0, 1)
+}
+
+@keyframes fadeIn {
+  from {color: rgb(0, 0, 0, 0)}
+  to {color: rgb(0, 0, 0, 1)}
+}
