@@ -72,21 +72,22 @@ class WeatherForm extends Component {
           </div>
           {this.state.weatherData.cod === '404' ? <p className="errorText">zipcode not found.</p> : ''}
 
-          <div className="radio">
-            <input type="radio" id="imperial" name="unit" value="imperial" onChange={this.handleRadioChange} checked={this.state.radioValue === 'imperial'} />
-            <label htmlFor="imperial">Imperial</label>
-          </div>
+          <div>
+            <div className="radio">
+              <input type="radio" id="imperial" name="unit" value="imperial" onChange={this.handleRadioChange} checked={this.state.radioValue === 'imperial'} />
+              <label htmlFor="imperial">Imperial</label>
+            </div>
 
-          <div className="radio">
-            <input type="radio" id="metric" name="unit" value="metric" onChange={this.handleRadioChange} checked={this.state.radioValue === 'metric'} />
-            <label htmlFor="metric">Metric</label>
-          </div>
+            <div className="radio">
+              <input type="radio" id="metric" name="unit" value="metric" onChange={this.handleRadioChange} checked={this.state.radioValue === 'metric'} />
+              <label htmlFor="metric">Metric</label>
+            </div>
 
-          <div className="radio">
-            <input type="radio" id="standard" name="unit" value="standard" onChange={this.handleRadioChange} checked={this.state.radioValue === 'standard'} />
-            <label htmlFor="standard">Standard</label>
+            <div className="radio">
+              <input type="radio" id="standard" name="unit" value="standard" onChange={this.handleRadioChange} checked={this.state.radioValue === 'standard'} />
+              <label htmlFor="standard">Standard</label>
+            </div>
           </div>
-
         </form>
         {this.state.weatherData.cod === 200 ? <WeatherData weather={this.state.weatherData}></WeatherData> : ''}
       </div>
