@@ -10,7 +10,9 @@ class WeatherForm extends Component {
     this.state = {
       inputValue: '',
       radioValue: 'imperial',
-      weatherData: null,
+      weatherData: {
+        'cod': '0'
+      },
     }
 
     this.handleRadioChange = this.handleRadioChange.bind(this)
@@ -23,7 +25,8 @@ class WeatherForm extends Component {
     });
   }
 
-  submit() {
+  submit(e) {
+    e.preventDefault()
     // ! Get your own API key ! 
     const apikey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
     // Get the zip from the input
@@ -38,6 +41,7 @@ class WeatherForm extends Component {
       return res.json()
     }).then((json) => {
       // If the request was successful assign the data to component state
+      console.log(json)
       this.setState({ weatherData: json })
       // ! This needs better error checking here or at renderWeather() 
       // It's possible to get a valid JSON response that is not weather 
@@ -55,7 +59,7 @@ class WeatherForm extends Component {
   render() {
     return (
       <div className="WeatherForm">
-        <form onSubmit={e => this.handleSubmit(e)}>
+        <form onSubmit={e => this.submit(e)}>
           <div className='zipFieldContainer'>
             <input
               value={this.state.inputValue}
@@ -64,27 +68,27 @@ class WeatherForm extends Component {
               pattern="(\d{5}([\-]\d{4})?)"
               placeholder="Enter Zipcode"
             />
-            <div onClick={this.submit} className="submitWeather">Submit</div>
+            <div onClick={e => this.submit(e)} className="submitWeather">Submit</div>
           </div>
+          {this.state.weatherData.cod === '404' ? <p className="errorText">zipcode not found.</p> : ''}
 
           <div className="radio">
             <input type="radio" id="imperial" name="unit" value="imperial" onChange={this.handleRadioChange} checked={this.state.radioValue === 'imperial'} />
-            <label for="imperial">Imperial</label>
+            <label htmlFor="imperial">Imperial</label>
           </div>
 
           <div className="radio">
             <input type="radio" id="metric" name="unit" value="metric" onChange={this.handleRadioChange} checked={this.state.radioValue === 'metric'} />
-            <label for="metric">Metric</label>
+            <label htmlFor="metric">Metric</label>
           </div>
 
           <div className="radio">
             <input type="radio" id="standard" name="unit" value="standard" onChange={this.handleRadioChange} checked={this.state.radioValue === 'standard'} />
-            <label for="standard">Standard</label>
+            <label htmlFor="standard">Standard</label>
           </div>
 
         </form>
-        {this.state.weatherData ? <WeatherData weather={this.state.weatherData}></WeatherData> : ''}
-
+        {this.state.weatherData.cod === 200 ? <WeatherData weather={this.state.weatherData}></WeatherData> : ''}
       </div>
     );
   }
